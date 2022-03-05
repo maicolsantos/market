@@ -48,7 +48,17 @@ export const AddItem = ({ onSubmit }: AddItemProps) => {
         <div className="field pr-3">
           <label className="label is-small">Preço ex:(12.34)</label>
           <div className="control">
-            <input className="input" type="text" value={price} onChange={e => setPrice(e.target.value)} />
+            <input
+            className="input"
+            type="text"
+            pattern="^(\d+(\.\d{0,2})?|\.?\d{1,2})$"
+            value={price}
+            onChange={e => {
+              if (e.target.validity.valid) {
+                setPrice(e.target.value)
+              }
+            }}
+          />
           </div>
         </div>
         <div className="field">
