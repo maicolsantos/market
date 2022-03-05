@@ -17,6 +17,12 @@ export const AddItem = ({ onSubmit }: AddItemProps) => {
   const [price, setPrice] = useState('')
   const [category, setCategory] = useState('')
 
+  const resetFileds = () => {
+    setProduct('')
+    setPrice('')
+    setCategory('')
+  }
+
   const handleSubmit = () => {
     const data = {
       title: product,
@@ -26,6 +32,7 @@ export const AddItem = ({ onSubmit }: AddItemProps) => {
     }
 
     onSubmit(data)
+    resetFileds()
   }
 
 
@@ -48,8 +55,8 @@ export const AddItem = ({ onSubmit }: AddItemProps) => {
           <label className="label is-small">Categorias</label>
           <div className="control">
             <div className="select">
-              <select onChange={e => setCategory(e.target.value)}>
-              <option>Selecione</option>
+              <select value={category} onChange={e => setCategory(e.target.value)}>
+                <option>Selecione</option>
                 {
                   categories.map(category => (
                     <option key={category}>{category}</option>
